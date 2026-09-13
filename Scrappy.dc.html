@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-b587c205-e6de-410d-9ad1-3ccc9baa437f/styles.css">
+<script src="_ds/organic-b587c205-e6de-410d-9ad1-3ccc9baa437f/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#e6dbc6}
+a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;font-family:var(--font-body)">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div style="min-height:874px;background:var(--color-bg);display:flex;flex-direction:column;padding:64px 26px 46px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px">
+    <div style="font-family:var(--font-heading);font-size:20px;letter-spacing:-.01em">Scrappy</div>
+    <button class="btn btn-icon" onClick="{{ noop }}" aria-label="Profile and login" style="border:1px solid var(--color-divider);background:var(--color-surface);width:40px;height:40px">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"></path></svg>
+    </button>
+  </div>
+
+  <div style="position:relative;margin-bottom:34px">
+    <div style="position:absolute;top:-22px;right:-14px;width:132px;height:132px;border-radius:999px;background:var(--color-accent-2-200)"></div>
+    <div style="position:absolute;top:56px;right:64px;width:74px;height:74px;border-radius:999px;background:var(--color-accent-200)"></div>
+    <h1 style="position:relative;font-size:44px;line-height:1.04;margin:0 0 16px;max-width:290px;text-wrap:pretty">Cook what's already in the fridge.</h1>
+    <p style="position:relative;font-size:15.5px;line-height:1.6;max-width:280px;color:var(--color-neutral-800);margin:0">Tell Scrappy what you have. It finds real recipes you can make tonight, so groceries stop going soft in the drawer and you stop paying delivery fees.</p>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:28px;background:var(--color-accent-2-200);margin-bottom:26px">
+    <div style="font-family:var(--font-heading);font-size:38px;line-height:1;color:var(--color-accent-2-800)">{{ readyCount }}</div>
+    <div style="font-size:13.5px;line-height:1.35;color:var(--color-accent-2-800)">recipes ready now<br><span style="opacity:.75">with the {{ ingredientCount }} ingredients you have</span></div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:auto">
+    <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--color-neutral-800)">
+      <span style="width:26px;height:26px;flex:none;border-radius:999px;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:12px">1</span>
+      List what's in your fridge
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--color-neutral-800)">
+      <span style="width:26px;height:26px;flex:none;border-radius:999px;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:12px">2</span>
+      See only what you can actually cook
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--color-neutral-800)">
+      <span style="width:26px;height:26px;flex:none;border-radius:999px;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:12px">3</span>
+      Swap anything you're missing
+    </div>
+  </div>
+
+  <button class="btn btn-primary" onClick="{{ goList }}" style="width:100%;font-size:16px;padding:16px 20px;margin-top:30px">See what I can make</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:874px;background:var(--color-bg);display:flex;flex-direction:column;padding:62px 20px 46px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px">
+    <button class="btn btn-icon" onClick="{{ goHome }}" aria-label="Home" style="border:1px solid var(--color-divider);background:var(--color-surface);width:40px;height:40px">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.5V20h13V9.5"></path></svg>
+    </button>
+    <button class="btn btn-secondary" onClick="{{ openIngredients }}" style="background:var(--color-surface);font-size:13px;padding:11px 16px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+      Modify ingredients
+    </button>
+  </div>
+
+  <h2 style="font-size:30px;margin:0 0 6px">Ready tonight</h2>
+  <p style="font-size:13.5px;color:var(--color-neutral-700);margin:0 0 18px">{{ readyCount }} recipes from your {{ ingredientCount }} ingredients. Tap one to start cooking.</p>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{ visibleRecipes }}" as="r" hint-placeholder-count="5">
+      <div onClick="{{ r.open }}" style="display:flex;gap:14px;padding:12px;border-radius:26px;background:var(--color-surface);box-shadow:var(--shadow-sm);cursor:pointer;align-items:center" style-hover="box-shadow:var(--shadow-md);background:var(--color-neutral-200)">
+        <div style="width:76px;height:76px;flex:none;border-radius:22px;overflow:hidden;position:relative;background:{{ r.tint }}">
+          <div style="position:absolute;left:14px;top:22px;width:48px;height:36px;border-radius:0 0 26px 26px;background:{{ r.tint2 }}"></div>
+          <div style="position:absolute;left:24px;top:12px;width:28px;height:28px;border-radius:999px;background:{{ r.tint3 }}"></div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-heading);font-size:16.5px;line-height:1.2;margin-bottom:6px">{{ r.name }}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-neutral">{{ r.time }}</span>
+            <span class="tag tag-accent-2">{{ r.have }}</span>
+            <sc-if value="{{ r.missing }}" hint-placeholder-val="{{ false }}"><span class="tag tag-accent">{{ r.missingLabel }}</span></sc-if>
+          </div>
+        </div>
+        <button class="btn btn-icon" onClick="{{ r.toggleStar }}" aria-label="Add to favorites" style="width:38px;height:38px;flex:none;background:transparent">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="{{ r.starFill }}" stroke="{{ r.starStroke }}" stroke-width="2.2" stroke-linejoin="round"><path d="m12 3.6 2.6 5.3 5.8.85-4.2 4.1 1 5.75L12 16.9l-5.2 2.7 1-5.75-4.2-4.1 5.8-.85z"></path></svg>
+        </button>
+      </div>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ canShowMore }}" hint-placeholder-val="{{ true }}">
+    <button class="btn btn-secondary" onClick="{{ showMore }}" style="width:100%;margin-top:16px;padding:14px;background:transparent;font-size:14px">Show more recipes</button>
+  </sc-if>
+
+  <sc-if value="{{ ingredientsOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;z-index:80;background:rgba(46,43,37,.42);display:flex;align-items:flex-end;animation:fade .18s ease">
+      <div style="width:100%;background:var(--color-bg);border-radius:34px 34px 0 0;padding:24px 20px 40px;animation:pop .26s cubic-bezier(.2,.8,.3,1)">
+        <div style="width:44px;height:4px;border-radius:999px;background:var(--color-neutral-300);margin:0 auto 18px"></div>
+        <h3 style="font-size:23px;margin:0 0 4px">Your fridge</h3>
+        <p style="font-size:13px;color:var(--color-neutral-700);margin:0 0 16px">Tap an ingredient to remove it once you've used it up.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+          <sc-for list="{{ ingredients }}" as="ing" hint-placeholder-count="8">
+            <button class="btn btn-secondary" onClick="{{ ing.remove }}" style="background:var(--color-surface);font-size:13px;padding:8px 12px;gap:7px">
+              {{ ing.name }}
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:8px">
+          <input class="input" placeholder="Add an ingredient" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onDraftKey }}">
+          <button class="btn btn-primary" onClick="{{ addIngredient }}" style="flex:none;padding-inline:18px">Add</button>
+        </div>
+        <button class="btn btn-primary" onClick="{{ closeIngredients }}" style="width:100%;margin-top:14px;padding:14px;background:var(--color-accent-2-600)">Done</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRecipe }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:874px;background:var(--color-bg);display:flex;flex-direction:column;padding-bottom:46px">
+  <div style="position:relative;height:292px;overflow:hidden;background:{{ current.tint }}">
+    <div style="position:absolute;left:50%;top:104px;transform:translateX(-50%);width:196px;height:132px;border-radius:0 0 98px 98px;background:{{ current.tint2 }}"></div>
+    <div style="position:absolute;left:50%;top:64px;transform:translateX(-50%);width:104px;height:104px;border-radius:999px;background:{{ current.tint3 }}"></div>
+    <div style="position:absolute;left:52px;top:196px;width:34px;height:34px;border-radius:999px;background:{{ current.tint3 }}"></div>
+    <div style="position:absolute;right:44px;top:210px;width:22px;height:22px;border-radius:999px;background:{{ current.tint2 }}"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(to bottom,rgba(245,234,216,0),#f5ead8)"></div>
+    <div style="position:absolute;top:60px;left:20px;right:20px;display:flex;justify-content:space-between">
+      <button class="btn btn-icon" onClick="{{ goList }}" aria-label="Back to recipes" style="background:var(--color-bg);width:40px;height:40px;box-shadow:var(--shadow-sm)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+      </button>
+      <button class="btn btn-icon" onClick="{{ goHome }}" aria-label="Home" style="background:var(--color-bg);width:40px;height:40px;box-shadow:var(--shadow-sm)">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.5 9.5V20h13V9.5"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <div style="padding:0 22px">
+    <h2 style="font-size:29px;margin:0 0 8px;line-height:1.1">{{ current.name }}</h2>
+    <div style="display:flex;gap:6px;margin-bottom:22px">
+      <span class="tag tag-neutral">{{ current.time }}</span>
+      <span class="tag tag-accent-2">{{ current.have }}</span>
+    </div>
+
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
+      <h4 style="font-size:19px;margin:0">Ingredients</h4>
+      <span style="font-size:11.5px;color:var(--color-neutral-700)">tap a name to swap it</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:26px">
+      <sc-for list="{{ ingRows }}" as="row" hint-placeholder-count="6">
+        <div style="border-radius:20px;padding:2px">
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 12px">
+            <button onClick="{{ row.toggleCheck }}" aria-label="Mark as used" style="width:24px;height:24px;flex:none;border-radius:999px;border:2px solid {{ row.boxBorder }};background:{{ row.boxFill }};cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{ row.tickColor }}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7"></path></svg>
+            </button>
+            <button onClick="{{ row.toggleSub }}" style="flex:1;text-align:left;background:transparent;border:0;padding:0;cursor:pointer;font-family:var(--font-body);font-size:15px;color:{{ row.textColor }};text-decoration:{{ row.deco }}">{{ row.name }}</button>
+            <span style="font-size:13px;color:var(--color-neutral-700)">{{ row.qty }}</span>
+          </div>
+          <sc-if value="{{ row.subOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:0 12px 8px 48px;padding:10px 14px;border-radius:18px;background:var(--color-accent-2-200);font-size:13px;color:var(--color-accent-2-800);animation:pop .2s ease">
+              <strong style="font-family:var(--font-heading);font-weight:400">Swap:</strong> {{ row.sub }}
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <h4 style="font-size:19px;margin:0 0 12px">Steps</h4>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div style="display:flex;gap:13px">
+          <span style="width:28px;height:28px;flex:none;border-radius:999px;background:var(--color-accent-200);color:var(--color-accent-800);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:13px">{{ s.n }}</span>
+          <p style="margin:0;font-size:14.5px;line-height:1.55;color:var(--color-neutral-800);padding-top:3px">{{ s.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{ tipOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;z-index:90;background:rgba(46,43,37,.45);display:flex;align-items:center;justify-content:center;padding:28px;animation:fade .2s ease">
+      <div style="background:var(--color-bg);border-radius:32px;padding:26px 24px;box-shadow:var(--shadow-lg);animation:pop .28s cubic-bezier(.2,.8,.3,1)">
+        <div style="width:52px;height:52px;border-radius:999px;background:var(--color-accent-2-200);display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3M20 16H8l3 3"></path></svg>
+        </div>
+        <h3 style="font-size:22px;margin:0 0 8px">Missing something? Click to substitute.</h3>
+        <p style="font-size:14px;line-height:1.55;color:var(--color-neutral-800);margin:0 0 18px">Tap any ingredient name and Scrappy shows something you can use instead.</p>
+        <button class="btn btn-primary" onClick="{{ dismissTip }}" style="width:100%;padding:14px">Got it</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:960}}">
+const STAR = "#e8c46a";
+
+const RECIPES = [
+  { id:"eggfried", name:"Fridge-clear fried rice", time:"15 min", haveN:6, missN:0,
+    tint:"#e1eecc", tint2:"#aebf92", tint3:"#f6d98b",
+    ing:[["Cooked rice","2 cups","Any leftover grain — quinoa or couscous"],["Eggs","2","A scoop of crumbled tofu"],["Frozen peas","1/2 cup","Chopped green beans or edamame"],["Soy sauce","2 tbsp","Salt plus a splash of Worcestershire"],["Garlic","2 cloves","1/2 tsp garlic powder"],["Scallions","2","A quarter of a white onion"]],
+    steps:["Heat a large pan on medium-high with a little oil. Add garlic and cook 30 seconds.","Push the garlic aside, crack in the eggs and scramble until just set.","Add the rice and peas. Press the rice flat and let it sit a minute so it crisps.","Add soy sauce, toss everything together, and finish with scallions."] },
+  { id:"pasta", name:"Garlic butter pasta", time:"20 min", haveN:5, missN:1,
+    tint:"#ffe1d0", tint2:"#f6a06b", tint3:"#f5ead8",
+    ing:[["Spaghetti","200 g","Any long or short dry pasta"],["Butter","3 tbsp","Olive oil, plus a pinch of salt"],["Garlic","4 cloves","1 tsp garlic powder"],["Parmesan","1/3 cup","Any hard cheese, finely grated"],["Black pepper","to taste","Red pepper flakes"],["Parsley","small handful","Dried Italian herbs"]],
+    steps:["Boil the pasta in well-salted water. Save a mug of the water before draining.","Melt butter in a wide pan on low and cook the sliced garlic until barely golden.","Add the pasta and a splash of pasta water, tossing until the sauce turns glossy.","Off the heat, stir in parmesan and pepper. Top with parsley."] },
+  { id:"quesadilla", name:"Black bean quesadilla", time:"12 min", haveN:5, missN:0,
+    tint:"#f0fae1", tint2:"#8fa073", tint3:"#ffc6a5",
+    ing:[["Flour tortillas","2","Sandwich bread, grilled like a melt"],["Black beans","1 can","Any canned bean, mashed slightly"],["Shredded cheese","1 cup","Sliced cheese, torn up"],["Cumin","1 tsp","Chili powder or taco seasoning"],["Salsa","to serve","Diced tomato with a squeeze of lime"]],
+    steps:["Warm a dry pan on medium. Mash the beans with cumin and a pinch of salt.","Spread beans over half a tortilla, add cheese, and fold it over.","Cook 3 minutes a side until the cheese melts and the outside is spotted.","Cut into wedges and serve with salsa."] },
+  { id:"soup", name:"Creamy tomato soup", time:"25 min", haveN:4, missN:1,
+    tint:"#ffc6a5", tint2:"#d67f48", tint3:"#ffe1d0",
+    ing:[["Canned tomatoes","1 can","Fresh tomatoes, roasted first"],["Onion","1","2 shallots or a leek"],["Stock","2 cups","Water plus a bouillon cube"],["Cream","1/4 cup","Milk, or a spoon of butter"],["Dried basil","1 tsp","Oregano or Italian herbs"]],
+    steps:["Soften the chopped onion in oil over medium heat, about 6 minutes.","Add tomatoes, stock and basil. Simmer 15 minutes.","Blend until smooth, or mash well with a spoon.","Stir in the cream, season, and serve."] },
+  { id:"stirfry", name:"Sesame veggie stir-fry", time:"18 min", haveN:6, missN:0,
+    tint:"#e1eecc", tint2:"#728157", tint3:"#f6d98b",
+    ing:[["Mixed vegetables","3 cups","Whatever is going soft in the drawer"],["Soy sauce","3 tbsp","Salt and a splash of vinegar"],["Sesame oil","1 tbsp","Any neutral oil plus sesame seeds"],["Ginger","1 inch","1/2 tsp ground ginger"],["Honey","1 tbsp","Sugar or maple syrup"],["Rice","to serve","Noodles or a warm tortilla"]],
+    steps:["Cut everything to a similar size so it cooks evenly.","Get the pan very hot, add oil, then the hardest vegetables first.","Stir constantly for 5 minutes, then add ginger, soy sauce and honey.","Cook one more minute until glazed and serve over rice."] },
+  { id:"toast", name:"Egg-in-a-hole toast", time:"8 min", haveN:4, missN:0,
+    tint:"#f6d98b", tint2:"#e0b45f", tint3:"#fff2eb",
+    ing:[["Bread","2 slices","Any roll, halved"],["Eggs","2","One egg and a slice of cheese"],["Butter","1 tbsp","Olive oil"],["Salt and pepper","to taste","Hot sauce"]],
+    steps:["Cut a hole in the middle of each slice with a glass.","Butter the pan on medium, lay in the bread, and crack an egg into each hole.","Cook 3 minutes, flip carefully, and cook 1 minute more.","Season and eat straight from the pan."] },
+  { id:"burrito", name:"Breakfast burrito", time:"14 min", haveN:5, missN:1,
+    tint:"#ffe1d0", tint2:"#c67139", tint3:"#f0fae1",
+    ing:[["Tortilla","1 large","Two small ones, overlapped"],["Eggs","3","Scrambled tofu"],["Cheese","1/2 cup","Any melting cheese"],["Potato","1","Leftover rice"],["Hot sauce","to taste","Ketchup with chili flakes"]],
+    steps:["Dice and fry the potato until crisp, about 8 minutes.","Scramble the eggs softly in the same pan.","Pile everything onto a warm tortilla with cheese and hot sauce.","Roll tight, then toast the seam side down for a minute."] },
+  { id:"noodle", name:"Upgraded instant noodles", time:"10 min", haveN:5, missN:0,
+    tint:"#e1eecc", tint2:"#8fa073", tint3:"#ffc6a5",
+    ing:[["Instant noodles","1 pack","Any dry noodle plus a bouillon cube"],["Egg","1","A spoon of peanut butter for body"],["Frozen vegetables","1 cup","Any fresh vegetable, thinly sliced"],["Soy sauce","1 tbsp","Salt"],["Scallion","1","Chives or a little raw onion"]],
+    steps:["Boil the noodles one minute short of the package time.","Add the frozen vegetables and the seasoning packet.","Crack in the egg and stir slowly so it ribbons through the broth.","Finish with soy sauce and scallion."] }
+];
+
+class Component extends DCLogic {
+  state = {
+    screen: "landing",
+    fav: {},
+    shown: 6,
+    current: RECIPES[0].id,
+    checked: {},
+    subs: {},
+    tipSeen: false,
+    tipOpen: false,
+    ingredientsOpen: false,
+    draft: "",
+    ingredients: ["Eggs","Rice","Garlic","Butter","Cheese","Tortillas","Black beans","Onion","Frozen peas","Soy sauce","Bread","Pasta"]
+  };
+
+  openRecipe(id) {
+    this.setState({ screen: "recipe", current: id, checked: {}, subs: {}, tipOpen: !this.state.tipSeen });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const cur = RECIPES.find(r => r.id === s.current) || RECIPES[0];
+    const visible = RECIPES.slice(0, s.shown).map(r => ({
+      ...r,
+      have: r.haveN + " ingredients you have",
+      missing: r.missN > 0,
+      missingLabel: "missing " + r.missN,
+      starFill: s.fav[r.id] ? STAR : "none",
+      starStroke: s.fav[r.id] ? STAR : "#82796a",
+      open: () => this.openRecipe(r.id),
+      toggleStar: (e) => { e.stopPropagation(); this.setState(st => ({ fav: { ...st.fav, [r.id]: !st.fav[r.id] } })); }
+    }));
+
+    const ingRows = cur.ing.map(([name, qty, sub], i) => {
+      const done = !!s.checked[i];
+      return {
+        name, qty, sub, subOpen: !!s.subs[i],
+        boxBorder: done ? "#728157" : "#c0b6a5",
+        boxFill: done ? "#728157" : "transparent",
+        tickColor: done ? "#f5ead8" : "transparent",
+        textColor: done ? "#a19786" : "#201e1d",
+        deco: done ? "line-through" : "none",
+        toggleCheck: () => this.setState(st => ({ checked: { ...st.checked, [i]: !st.checked[i] } })),
+        toggleSub: () => this.setState(st => ({ subs: { ...st.subs, [i]: !st.subs[i] } }))
+      };
+    });
+
+    return {
+      isLanding: s.screen === "landing",
+      isList: s.screen === "list",
+      isRecipe: s.screen === "recipe",
+      readyCount: RECIPES.length,
+      ingredientCount: s.ingredients.length,
+      visibleRecipes: visible,
+      canShowMore: s.shown < RECIPES.length,
+      showMore: () => this.setState(st => ({ shown: Math.min(RECIPES.length, st.shown + 2) })),
+      current: { ...cur, have: cur.haveN + " ingredients you have" },
+      ingRows,
+      steps: cur.steps.map((text, i) => ({ n: i + 1, text })),
+      tipOpen: s.tipOpen,
+      dismissTip: () => this.setState({ tipOpen: false, tipSeen: true }),
+      ingredientsOpen: s.ingredientsOpen,
+      openIngredients: () => this.setState({ ingredientsOpen: true }),
+      closeIngredients: () => this.setState({ ingredientsOpen: false, draft: "" }),
+      ingredients: s.ingredients.map(name => ({
+        name,
+        remove: () => this.setState(st => ({ ingredients: st.ingredients.filter(x => x !== name) }))
+      })),
+      draft: s.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      onDraftKey: (e) => { if (e.key === "Enter") this.addIngredient(); },
+      addIngredient: () => this.addIngredient(),
+      goList: () => this.setState({ screen: "list", ingredientsOpen: false }),
+      goHome: () => this.setState({ screen: "landing", ingredientsOpen: false }),
+      noop: () => {}
+    };
+  }
+
+  addIngredient() {
+    const v = this.state.draft.trim();
+    if (!v) return;
+    this.setState(st => ({ ingredients: st.ingredients.includes(v) ? st.ingredients : [...st.ingredients, v], draft: "" }));
+  }
+}
+</script>
+</body>
+</html>
