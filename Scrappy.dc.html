@@ -23,25 +23,23 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
 <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
 <div style="min-height:874px;background:var(--color-bg);display:flex;flex-direction:column;padding:64px 26px 46px">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:44px">
-    <div style="font-family:var(--font-heading);font-size:20px;letter-spacing:-.01em">Scrappy</div>
+    <div style="font-family:var(--font-heading);font-size:20px;letter-spacing:-.01em">[App Name]</div>
     <button class="btn btn-icon" onClick="{{ noop }}" aria-label="Profile and login" style="border:1px solid var(--color-divider);background:var(--color-surface);width:40px;height:40px">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"></path></svg>
     </button>
   </div>
 
-  <div style="position:relative;margin-bottom:34px">
-    <div style="position:absolute;top:-22px;right:-14px;width:132px;height:132px;border-radius:999px;background:var(--color-accent-2-200)"></div>
-    <div style="position:absolute;top:56px;right:64px;width:74px;height:74px;border-radius:999px;background:var(--color-accent-200)"></div>
-    <h1 style="position:relative;font-size:44px;line-height:1.04;margin:0 0 16px;max-width:290px;text-wrap:pretty">Cook what's already in the fridge.</h1>
-    <p style="position:relative;font-size:15.5px;line-height:1.6;max-width:280px;color:var(--color-neutral-800);margin:0">Tell Scrappy what you have. It finds real recipes you can make tonight, so groceries stop going soft in the drawer and you stop paying delivery fees.</p>
+  <div style="position:relative;height:132px;border-radius:26px;overflow:hidden;background:var(--color-accent-200);margin-bottom:26px">
+    <div style="position:absolute;top:-30px;left:-20px;width:120px;height:120px;border-radius:999px;background:var(--color-accent-2-200)"></div>
+    <div style="position:absolute;bottom:-36px;right:30px;width:90px;height:90px;border-radius:999px;background:var(--color-accent-2-200)"></div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:14px;font-size:52px">🥬🍅🥚</div>
   </div>
 
-  <div style="display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:28px;background:var(--color-accent-2-200);margin-bottom:26px">
-    <div style="font-family:var(--font-heading);font-size:38px;line-height:1;color:var(--color-accent-2-800)">{{ readyCount }}</div>
-    <div style="font-size:13.5px;line-height:1.35;color:var(--color-accent-2-800)">recipes ready now<br><span style="opacity:.75">with the {{ ingredientCount }} ingredients you have</span></div>
+  <div style="position:relative;margin-bottom:30px">
+    <h1 style="position:relative;font-family:var(--font-body);font-weight:700;font-size:38px;line-height:1.15;margin:0;max-width:300px;text-wrap:pretty;letter-spacing:-.01em">Turn what's in your kitchen into dinner.</h1>
   </div>
 
-  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:auto">
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px">
     <div style="display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--color-neutral-800)">
       <span style="width:26px;height:26px;flex:none;border-radius:999px;background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:12px">1</span>
       List what's in your fridge
@@ -56,7 +54,15 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
     </div>
   </div>
 
-  <button class="btn btn-primary" onClick="{{ goList }}" style="width:100%;font-size:16px;padding:16px 20px;margin-top:30px">See what I can make</button>
+  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:22px 20px;border-radius:28px;background:var(--color-accent-2-200);margin-bottom:14px;margin-top:auto">
+    <div style="font-family:var(--font-heading);font-size:56px;line-height:1;color:var(--color-accent-2-800)">{{ readyCount }}</div>
+    <div style="font-size:13.5px;color:var(--color-accent-2-800);margin-top:6px">recipes ready to make now</div>
+  </div>
+
+  <button class="btn btn-primary" onClick="{{ goList }}" style="width:100%;font-size:16px;padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:9px">
+    See what I can make
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"></path><path d="m13 6 6 6-6 6"></path></svg>
+  </button>
 </div>
 </sc-if>
 
@@ -81,13 +87,13 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
         <div style="width:76px;height:76px;flex:none;border-radius:22px;overflow:hidden;position:relative;background:{{ r.tint }}">
           <div style="position:absolute;left:14px;top:22px;width:48px;height:36px;border-radius:0 0 26px 26px;background:{{ r.tint2 }}"></div>
           <div style="position:absolute;left:24px;top:12px;width:28px;height:28px;border-radius:999px;background:{{ r.tint3 }}"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:32px">{{ r.emoji }}</div>
         </div>
         <div style="flex:1;min-width:0">
           <div style="font-family:var(--font-heading);font-size:16.5px;line-height:1.2;margin-bottom:6px">{{ r.name }}</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px">
             <span class="tag tag-neutral">{{ r.time }}</span>
             <span class="tag tag-accent-2">{{ r.have }}</span>
-            <sc-if value="{{ r.missing }}" hint-placeholder-val="{{ false }}"><span class="tag tag-accent">{{ r.missingLabel }}</span></sc-if>
           </div>
         </div>
         <button class="btn btn-icon" onClick="{{ r.toggleStar }}" aria-label="Add to favorites" style="width:38px;height:38px;flex:none;background:transparent">
@@ -133,6 +139,7 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
     <div style="position:absolute;left:50%;top:64px;transform:translateX(-50%);width:104px;height:104px;border-radius:999px;background:{{ current.tint3 }}"></div>
     <div style="position:absolute;left:52px;top:196px;width:34px;height:34px;border-radius:999px;background:{{ current.tint3 }}"></div>
     <div style="position:absolute;right:44px;top:210px;width:22px;height:22px;border-radius:999px;background:{{ current.tint2 }}"></div>
+    <div style="position:absolute;left:0;right:0;top:0;height:236px;display:flex;align-items:center;justify-content:center;font-size:84px">{{ current.emoji }}</div>
     <div style="position:absolute;left:0;right:0;bottom:0;height:56px;background:linear-gradient(to bottom,rgba(245,234,216,0),#f5ead8)"></div>
     <div style="position:absolute;top:60px;left:20px;right:20px;display:flex;justify-content:space-between">
       <button class="btn btn-icon" onClick="{{ goList }}" aria-label="Back to recipes" style="background:var(--color-bg);width:40px;height:40px;box-shadow:var(--shadow-sm)">
@@ -192,7 +199,7 @@ a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
           <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#56633f" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3M20 16H8l3 3"></path></svg>
         </div>
         <h3 style="font-size:22px;margin:0 0 8px">Missing something? Click to substitute.</h3>
-        <p style="font-size:14px;line-height:1.55;color:var(--color-neutral-800);margin:0 0 18px">Tap any ingredient name and Scrappy shows something you can use instead.</p>
+        <p style="font-size:14px;line-height:1.55;color:var(--color-neutral-800);margin:0 0 18px">Tap any ingredient name and [App Name] shows something you can use instead.</p>
         <button class="btn btn-primary" onClick="{{ dismissTip }}" style="width:100%;padding:14px">Got it</button>
       </div>
     </div>
@@ -208,35 +215,35 @@ const STAR = "#e8c46a";
 
 const RECIPES = [
   { id:"eggfried", name:"Fridge-clear fried rice", time:"15 min", haveN:6, missN:0,
-    tint:"#e1eecc", tint2:"#aebf92", tint3:"#f6d98b",
+    tint:"#e1eecc", tint2:"#aebf92", tint3:"#f6d98b", emoji:"🍚",
     ing:[["Cooked rice","2 cups","Any leftover grain — quinoa or couscous"],["Eggs","2","A scoop of crumbled tofu"],["Frozen peas","1/2 cup","Chopped green beans or edamame"],["Soy sauce","2 tbsp","Salt plus a splash of Worcestershire"],["Garlic","2 cloves","1/2 tsp garlic powder"],["Scallions","2","A quarter of a white onion"]],
     steps:["Heat a large pan on medium-high with a little oil. Add garlic and cook 30 seconds.","Push the garlic aside, crack in the eggs and scramble until just set.","Add the rice and peas. Press the rice flat and let it sit a minute so it crisps.","Add soy sauce, toss everything together, and finish with scallions."] },
   { id:"pasta", name:"Garlic butter pasta", time:"20 min", haveN:5, missN:1,
-    tint:"#ffe1d0", tint2:"#f6a06b", tint3:"#f5ead8",
+    tint:"#ffe1d0", tint2:"#f6a06b", tint3:"#f5ead8", emoji:"🍝",
     ing:[["Spaghetti","200 g","Any long or short dry pasta"],["Butter","3 tbsp","Olive oil, plus a pinch of salt"],["Garlic","4 cloves","1 tsp garlic powder"],["Parmesan","1/3 cup","Any hard cheese, finely grated"],["Black pepper","to taste","Red pepper flakes"],["Parsley","small handful","Dried Italian herbs"]],
     steps:["Boil the pasta in well-salted water. Save a mug of the water before draining.","Melt butter in a wide pan on low and cook the sliced garlic until barely golden.","Add the pasta and a splash of pasta water, tossing until the sauce turns glossy.","Off the heat, stir in parmesan and pepper. Top with parsley."] },
   { id:"quesadilla", name:"Black bean quesadilla", time:"12 min", haveN:5, missN:0,
-    tint:"#f0fae1", tint2:"#8fa073", tint3:"#ffc6a5",
+    tint:"#f0fae1", tint2:"#8fa073", tint3:"#ffc6a5", emoji:"🫓",
     ing:[["Flour tortillas","2","Sandwich bread, grilled like a melt"],["Black beans","1 can","Any canned bean, mashed slightly"],["Shredded cheese","1 cup","Sliced cheese, torn up"],["Cumin","1 tsp","Chili powder or taco seasoning"],["Salsa","to serve","Diced tomato with a squeeze of lime"]],
     steps:["Warm a dry pan on medium. Mash the beans with cumin and a pinch of salt.","Spread beans over half a tortilla, add cheese, and fold it over.","Cook 3 minutes a side until the cheese melts and the outside is spotted.","Cut into wedges and serve with salsa."] },
   { id:"soup", name:"Creamy tomato soup", time:"25 min", haveN:4, missN:1,
-    tint:"#ffc6a5", tint2:"#d67f48", tint3:"#ffe1d0",
+    tint:"#ffc6a5", tint2:"#d67f48", tint3:"#ffe1d0", emoji:"🍅",
     ing:[["Canned tomatoes","1 can","Fresh tomatoes, roasted first"],["Onion","1","2 shallots or a leek"],["Stock","2 cups","Water plus a bouillon cube"],["Cream","1/4 cup","Milk, or a spoon of butter"],["Dried basil","1 tsp","Oregano or Italian herbs"]],
     steps:["Soften the chopped onion in oil over medium heat, about 6 minutes.","Add tomatoes, stock and basil. Simmer 15 minutes.","Blend until smooth, or mash well with a spoon.","Stir in the cream, season, and serve."] },
   { id:"stirfry", name:"Sesame veggie stir-fry", time:"18 min", haveN:6, missN:0,
-    tint:"#e1eecc", tint2:"#728157", tint3:"#f6d98b",
+    tint:"#e1eecc", tint2:"#728157", tint3:"#f6d98b", emoji:"🥦",
     ing:[["Mixed vegetables","3 cups","Whatever is going soft in the drawer"],["Soy sauce","3 tbsp","Salt and a splash of vinegar"],["Sesame oil","1 tbsp","Any neutral oil plus sesame seeds"],["Ginger","1 inch","1/2 tsp ground ginger"],["Honey","1 tbsp","Sugar or maple syrup"],["Rice","to serve","Noodles or a warm tortilla"]],
     steps:["Cut everything to a similar size so it cooks evenly.","Get the pan very hot, add oil, then the hardest vegetables first.","Stir constantly for 5 minutes, then add ginger, soy sauce and honey.","Cook one more minute until glazed and serve over rice."] },
   { id:"toast", name:"Egg-in-a-hole toast", time:"8 min", haveN:4, missN:0,
-    tint:"#f6d98b", tint2:"#e0b45f", tint3:"#fff2eb",
+    tint:"#f6d98b", tint2:"#e0b45f", tint3:"#fff2eb", emoji:"🍳",
     ing:[["Bread","2 slices","Any roll, halved"],["Eggs","2","One egg and a slice of cheese"],["Butter","1 tbsp","Olive oil"],["Salt and pepper","to taste","Hot sauce"]],
     steps:["Cut a hole in the middle of each slice with a glass.","Butter the pan on medium, lay in the bread, and crack an egg into each hole.","Cook 3 minutes, flip carefully, and cook 1 minute more.","Season and eat straight from the pan."] },
   { id:"burrito", name:"Breakfast burrito", time:"14 min", haveN:5, missN:1,
-    tint:"#ffe1d0", tint2:"#c67139", tint3:"#f0fae1",
+    tint:"#ffe1d0", tint2:"#c67139", tint3:"#f0fae1", emoji:"🌯",
     ing:[["Tortilla","1 large","Two small ones, overlapped"],["Eggs","3","Scrambled tofu"],["Cheese","1/2 cup","Any melting cheese"],["Potato","1","Leftover rice"],["Hot sauce","to taste","Ketchup with chili flakes"]],
     steps:["Dice and fry the potato until crisp, about 8 minutes.","Scramble the eggs softly in the same pan.","Pile everything onto a warm tortilla with cheese and hot sauce.","Roll tight, then toast the seam side down for a minute."] },
   { id:"noodle", name:"Upgraded instant noodles", time:"10 min", haveN:5, missN:0,
-    tint:"#e1eecc", tint2:"#8fa073", tint3:"#ffc6a5",
+    tint:"#e1eecc", tint2:"#8fa073", tint3:"#ffc6a5", emoji:"🍜",
     ing:[["Instant noodles","1 pack","Any dry noodle plus a bouillon cube"],["Egg","1","A spoon of peanut butter for body"],["Frozen vegetables","1 cup","Any fresh vegetable, thinly sliced"],["Soy sauce","1 tbsp","Salt"],["Scallion","1","Chives or a little raw onion"]],
     steps:["Boil the noodles one minute short of the package time.","Add the frozen vegetables and the seasoning packet.","Crack in the egg and stir slowly so it ribbons through the broth.","Finish with soy sauce and scallion."] }
 ];
